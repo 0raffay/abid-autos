@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Slick -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <title>Abid Autos</title>
+</head>
+
+<body>
+
+  <div class="rfMobileMenu ">
+    <div class="rfMobileMenuHeader">
+      <div class="mobileLogo">
+        <img src="assets/images/logo.svg" alt="Reload Page">
+      </div>
+      <button style="background-color: none; border: none; background: white;" class="rfMobileMenuClose"><i
+          class="fa fa-close"></i></button>
+    </div>
+    <ul class="rfmobileMenuList">
+      <li>
+        <a href="#services-section" class="rfMobileMenuButton">Services</a>
+      </li>
+      <li>
+        <a href="#how-it-work-section" class="rfMobileMenuButton">How it Works</a>
+      </li>
+      <li>
+        <a href="#team-section" class="rfMobileMenuButton">Team</a>
+      </li>
+      <li>
+        <a href="#coupon-section" class="rfMobileMenuButton">Offers</a>
+      </li>
+      <li>
+        <a href="#faq-section" class="rfMobileMenuButton">Faqs</a>
+      </li>
+      <li>
+        <a href="#location-section" class="rfMobileMenuButton">Location</a>
+      </li>
+      <li>
+        <a href="#location-section" class="rfMobileMenuButton">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container" id="home-section">
+    <header>
+      <div class="top-header">
+        <h2>Schedule an appointment now & <span>get a 15% discount</span> </h2>
+        <h2>
+          Call now:
+          <span>
+            <a href="tel: +92 3201291613">+92 3201291613</a>
+          </span>
+        </h2>
+      </div>
+      <div class="bottom-header container">
+        <figure class="logo">
+          <img src="assets/images/logo.svg" alt="Abid Autos">
+        </figure>
+        <ul class="nav-list">
+          <li>
+            <a href="#services-section">Services</a>
+          </li>
+          <li>
+            <a href="#how-it-work-section">How it Works</a>
+          </li>
+          <li>
+            <a href="#team-section">Team</a>
+          </li>
+          <li>
+            <a href="#coupon-section">Offers</a>
+          </li>
+          <li>
+            <a href="#faq-section">Faqs</a>
+          </li>
+          <li>
+            <a href="#location-section">Location</a>
+          </li>
+          <li>
+            <a href="#location-section">Contact Us</a>
+          </li>
+        </ul>
+
+        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule an
+          Appointment</a>
+
+        <div class="burgerButton">
+          <svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-18xo6c6" aria-hidden="true">
+            <path fill="currentColor"
+              d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
+            </path>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero-section position-relative overflow-hidden">
+      <div class="hero-overlay"></div>
+
+      <figure class="mb-0">
+        <img src="assets/images/banner.png" alt="Abid Autos" class="hero-img">
+      </figure>
+
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1>Expert Abid Autos</h1>
+          <p>Trust Firestone Complete Auto Care for the best auto repair and care. Schedule same-day repair service for
+            your vehicle today!</p>
+
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a href="#" class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+              Schedule Appointment
+            </a>
+            <a href="tel:+923201291613" class="btn btn-primary btn-lg px-4">
+              <i class="fa-solid fa-phone-flip me-2"></i>Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="services-section" id="services-section">
+    <div class="container">
+      <h3 class="text-center mb-4">
+        GET QUICK AUTO REPAIR SERVICES FROM OUR EXPERTS
+      </h3>
+
+      <div class="services-slider">
+        <div class="service-card">
+          <figure>
+            <img src="assets/images/services/steering-suspension.webp" alt="Steering & Suspension">
+          </figure>
+          <h4>Steering & Suspension</h4>
+          <p>
+            Get quick auto repair services from our experts. Schedule same-day repair service today.
+          </p>
+          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
+            Appointment</a>
+        </div>
+
+        <div class="service-card">
+          <figure>
+            <img src="assets/images/services/oil-change.webp" alt="Oil Change">
+          </figure>
+          <h4>Oil Change</h4>
+          <p>
+            Professional oil change to keep your engine healthy and running smoothly.
+          </p>
+          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
+            Appointment</a>
+        </div>
+
+        <div class="service-card">
+          <figure>
+            <img src="assets/images/services/transmission.webp" alt="Transmission">
+          </figure>
+          <h4>Transmission</h4>
+          <p>
+            Advanced diagnostics to detect and fix issues before they get expensive.
+          </p>
+          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
+            Appointment</a>
+        </div>
+        <div class="service-card">
+          <figure>
+            <img src="assets/images/services/transmission.webp" alt="Transmission">
+          </figure>
+          <h4>Transmission</h4>
+          <p>
+            Advanced diagnostics to detect and fix issues before they get expensive.
+          </p>
+          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
+            Appointment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-work-section">
+    <div class="container">
+      <h3 class="text-center mb-3 mb-md-5 fw-bold">HOW OUR REPAIR SERVICES WORK</h3>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="how-card text-center p-4">
+            <div class="icon-wrapper mb-4">
+              <i class="fa-solid fa-calendar-days"></i> <span class="step-badge">1</span>
+            </div>
+            <h4>Book Online</h4>
+            <p>Select your required service and pick a time slot that fits your schedule. It takes less than 2 minutes.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="how-card text-center p-4">
+            <div class="icon-wrapper mb-4">
+              <i class="fa-solid fa-screwdriver-wrench"></i> <span class="step-badge">2</span>
+            </div>
+            <h4>Expert Inspection</h4>
+            <p>Bring your car in or have our pros take a look. We provide a transparent quote before any work starts.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="how-card text-center p-4">
+            <div class="icon-wrapper mb-4">
+              <i class="fa-solid fa-car-on"></i> <span class="step-badge">3</span>
+            </div>
+            <h4>Ready to Roll</h4>
+            <p>Once fixed, we perform a quality check. Pick up your keys and enjoy a smooth, safe drive back home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contact" id="location-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h3 class="fw-bold mb-4">Message Us</h3>
+          <form>
+            <div class="mb-3">
+              <input type="text" class="form-control form-control-lg" placeholder="Your Name">
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control form-control-lg" placeholder="Email Address">
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control form-control-lg" rows="4" placeholder="How can we help?"></textarea>
+            </div>
+            <button class="btn btn-primary btn-lg w-100">Send Message</button>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h3 class="fw-bold mb-4">Find Our Workshop</h3>
+          <div class="map-container rounded shadow-sm overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.31399252169!2d67.0707!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDUxJzM4LjUiTiA2N8KwMDQnMTQuNSJF!5e0!3m2!1sen!2s!4v1700000000000"
+              width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="team-section" class="team-section py-3">
+    <div class="container">
+      <h3 class="text-center fw-bold mb-5">MEET OUR EXPERT MECHANICS</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="team-card text-center">
+            <img src="https://i.pravatar.cc/300?img=11" alt="Mechanic" class="rounded-circle mb-3 mx-auto">
+            <h5>Ahmed Khan</h5>
+            <p class="text-primary">Master Technician</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="team-card text-center">
+            <img src="https://i.pravatar.cc/300?img=12" alt="Mechanic" class="rounded-circle mb-3 mx-auto">
+            <h5>Zubair Abid</h5>
+            <p class="text-primary">Engine Specialist</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="team-card text-center">
+            <img src="https://i.pravatar.cc/300?img=13" alt="Mechanic" class="rounded-circle mb-3 mx-auto">
+            <h5>Usman Ali</h5>
+            <p class="text-primary">Electrical Expert</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="stats-section text-white" id="stat-section">
+    <div class="container">
+      <div class="row align-items-center text-center">
+        <div class="col-6 col-md-3">
+          <h2 class="fw-bold">15+</h2>
+          <p class="mb-0">Years Experience</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="fw-bold">10k+</h2>
+          <p>Happy Clients</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="fw-bold">50+</h2>
+          <p class="mb-0">Expert Mechanics</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="fw-bold">100%</h2>
+          <p class="mb-0">Service Warranty</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coupon-section text-center" id="coupon-section">
+    <h2 class="mb-4 fw-bold">Take Advantage of Our Specials - Call us Today!</h2>
+
+    <div class="container">
+
+      <div class="row justify-content-center gap-3">
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="coupon-card">
+            <div class="coupon-brand">Abid Autos</div>
+            <div class="coupon-price">PKR 7000</div>
+            <p class="coupon-text">Abid AUTOMOTIVE SPECIAL</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="coupon-card">
+            <div class="coupon-brand">Abid Autos</div>
+            <div class="coupon-price">PKR 6000</div>
+            <p class="coupon-text">SYNTHETIC BLEND OIL CHANGE</p>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <div class="coupon-card">
+            <div class="coupon-brand">Abid Autos</div>
+            <div class="coupon-price">PKR 500</div>
+            <p class="coupon-text">NEW CUSTOMER SPECIAL</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <section class="faq-section bg-light" id="faqp-section">
+    <div class="container">
+      <h3 class="text-center mb-5">FREQUENTLY ASKED QUESTIONS</h3>
+      <div class="accordion mx-auto" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              How long does a standard oil change take?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Typically, an oil change at Abid Autos takes about 30 to 45 minutes. We recommend booking in advance to
+              skip the wait!
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              Do you provide a warranty on repairs?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, we provide a 6-month warranty on all major mechanical repairs and parts replaced at our workshop.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="gallery-section" id="gallery-section">
+    <div class="container">
+      <h4 class="mb-5 text-center fw-bold text-uppercase">Our Gallery</h4>
+
+      <div class="row g-4 justify-content-center">
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-card">
+            <img src="https://picsum.photos/400/600" alt="Gallery Image" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-card">
+            <img src="https://picsum.photos/400/300" alt="Gallery Image" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-card">
+            <img src="https://picsum.photos/400/500" alt="Gallery Image" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-card">
+            <img src="https://picsum.photos/400/700" alt="Gallery Image" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-card">
+            <img src="https://picsum.photos/400/400" alt="Gallery Image" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-card">
+            <img src="https://picsum.photos/400/550" alt="Gallery Image" class="img-fluid">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="footer-section">
+    <div class="container">
+      <div class="row gy-4">
+
+        <div class="col-md-4">
+          <figure class="footer-logo mb-3">
+            <img src="assets/images/logo.svg" alt="Abid Autos" width="180">
+          </figure>
+          <p class="text-muted">Providing top-tier automotive services with a commitment to quality and customer
+            satisfaction. Schedule your visit today and experience the difference.</p>
+        </div>
+
+        <div class="col-md-4 ps-md-5">
+          <h5 class="fw-bold mb-3">Quick Links</h5>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">How it Works</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Location</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Get In Touch</h5>
+          <p class="mb-2">Need immediate assistance?</p>
+          <div class="footer-contact">
+            <h4 class="fw-bold">
+              <a href="tel:+923201291613" class="text-decoration-none">+92 3201291613</a>
+            </h4>
+            <p class="text-muted">Monday — Saturday: 9am - 7pm</p>
+          </div>
+          <a href="#" class="btn btn-outline-primary mt-2" data-bs-toggle="modal"
+            data-bs-target="#appointmentModal">Book Appointment</a>
+        </div>
+
+      </div>
+
+      <hr class="mt-5 mb-4 border-secondary">
+
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0 text-muted">&copy; 2026 Abid Autos. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title fw-bold" id="appointmentModalLabel">
+            <i class="fa-solid fa-calendar-check me-2"></i>Schedule Your 15% Discount Service
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="appointmentForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-bold">Full Name</label>
+                <input type="text" class="form-control" placeholder="Abid Khan" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold">Phone Number</label>
+                <input type="tel" class="form-control" placeholder="+92 320..." required>
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label fw-bold">Select Service</label>
+                <select class="form-select" required>
+                  <option value="" selected disabled>Choose an option...</option>
+                  <option value="oil-change">Oil Change</option>
+                  <option value="transmission">Transmission Repair</option>
+                  <option value="steering">Steering & Suspension</option>
+                  <option value="inspection">Full Vehicle Inspection</option>
+                  <option value="other">Other Maintenance</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-bold">Vehicle Make & Model</label>
+                <input type="text" class="form-control" placeholder="Toyota Corolla 2022" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold">Preferred Date</label>
+                <input type="date" class="form-control" required>
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label fw-bold">Describe the Issue (Optional)</label>
+                <textarea class="form-control" rows="3"
+                  placeholder="Explain what's happening with your car..."></textarea>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <button type="submit" class="btn btn-primary w-100 py-3 fw-bold shadow-sm">
+                Confirm Appointment Now
+              </button>
+              <p class="text-center text-muted small mt-2">
+                <i class="fa-solid fa-lock me-1"></i> Your 15% discount will be applied at the workshop.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <a href="https://wa.me/923201291613?text=I'm%20interested%20in%20booking%20an%20appointment" class="whatsapp-float"
+    target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-whatsapp my-float"></i>
+  </a>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script>
+
+    function header() {
+      let stickyElement = ".bottom-header";
+      let stickyClass = "fixed";
+
+      let stickyOffset = $(stickyElement).offset().top;
+      $(document).scroll(function () {
+        var sticky = $(stickyElement),
+          scroll = $(window).scrollTop();
+        if (scroll >= stickyOffset) sticky.addClass(stickyClass);
+        else sticky.removeClass(stickyClass);
+      });
+
+
+      let burgerButton = $('.burgerButton')
+      let mobileMenu = $('.rfMobileMenu')
+      let closeButton = $('.rfMobileMenuClose')
+      burgerButton.click(function () {
+        mobileMenu.toggleClass('active')
+      })
+
+      closeButton.click(function () {
+        mobileMenu.removeClass('active')
+      })
+      const mobileMenuToggleButtons = $(".rfMobileMenuButton");
+      const mobileSubMenus = $(".rfInnerMobileMenuList");
+      mobileSubMenus.hide();
+      mobileMenuToggleButtons.click(function () {
+        $(this).toggleClass("active");
+        $(this).next().toggleClass("active").toggle();
+        mobileMenu.removeClass('active')
+      })
+    }
+
+    $(document).ready(function () {
+      // Wait 1.5 seconds after page load, then open the modal
+      setTimeout(function () {
+        var myModal = new bootstrap.Modal(document.getElementById('appointmentModal'));
+        myModal.show();
+      }, 1500);
+
+      $('.services-slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        responsive: [
+          { breakpoint: 992, settings: { slidesToShow: 2 } },
+          { breakpoint: 576, settings: { slidesToShow: 1 } }
+        ]
+      });
+
+
+      header();
+
+    });
+  </script>
+
+</body>
+
+</html>
