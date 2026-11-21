@@ -1,548 +1,954 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+  Language: the page is written in Urdu (default). Every translatable element carries its
+  English text in data-en / data-en-ph (placeholder) / data-en-aria (aria-label) and
+  assets/js/main.js swaps them. Keep elements with data-en as plain text (no child tags).
+
+  "is-demo" on <html> shows small "Sample" tags on content that must be replaced with the
+  workshop's real reviews / photos / team before going live. Remove the class to hide them.
+-->
+<html lang="ur" dir="rtl" class="is-demo">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- Slick -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+  <script>
+    // Apply the saved language before anything paints (default: Urdu).
+    (function () {
+      var d = document.documentElement, l = 'ur';
+      d.className += ' js';
+      try { l = localStorage.getItem('aa_lang') === 'en' ? 'en' : 'ur'; } catch (e) { }
+      d.lang = l; d.dir = l === 'en' ? 'ltr' : 'rtl';
+    })();
+  </script>
+
+  <title>عابد آٹوز | گاڑی کی مرمت، آئل چینج اور مکمل سروس</title>
+  <meta name="description"
+    content="عابد آٹوز – گاڑی کی قابلِ اعتماد ورکشاپ۔ آئل چینج، اے سی، اسکیننگ، سسپنشن اور مکمل سروس۔ کام سے پہلے قیمت، 6 ماہ کی وارنٹی۔ واٹس ایپ یا کال کریں: 0320-1291613">
+  <meta name="theme-color" content="#FF0000">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Abid Autos – Complete Auto Care">
+  <meta property="og:description"
+    content="Same-day car repair, AC, scanning and oil change. Price agreed before work, 6-month warranty. Book on WhatsApp – 15% off.">
+  <meta property="og:image" content="assets/images/banner.webp">
+
+  <!-- Bootstrap: RTL build for Urdu, LTR build for English. main.js switches them. -->
+  <link rel="stylesheet" id="bs-rtl" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+  <link rel="stylesheet" id="bs-ltr" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    media="not all">
+  <script>
+    if (document.documentElement.lang === 'en') {
+      document.getElementById('bs-ltr').media = 'all';
+      document.getElementById('bs-rtl').media = 'not all';
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Urdu fonts: Gulzar (Nastaliq headings) + Noto Naskh Arabic (text). English fonts are local (assets/css). -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Gulzar&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title>Abid Autos</title>
+  <!-- Local business info for Google search / Maps.
+       TODO: add "address" once the workshop's exact address is confirmed, and fix "geo". -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Abid Autos",
+    "alternateName": "عابد آٹوز",
+    "telephone": "+923201291613",
+    "priceRange": "PKR",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }],
+    "geo": { "@type": "GeoCoordinates", "latitude": 24.8607, "longitude": 67.0707 },
+    "paymentAccepted": "Cash, JazzCash, Easypaisa, Bank transfer"
+  }
+  </script>
+
+  <!-- Marketing tracking: paste your IDs to measure which ads bring leads.
+       Google Analytics 4 / Google Ads:
+       <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+       <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXX');</script>
+       Meta (Facebook/Instagram) Pixel: paste the snippet from Meta Events Manager here.
+       Lead events (call_click, whatsapp_click, lead_submit) are sent automatically by assets/js/main.js. -->
 </head>
 
 <body>
+  <a class="skip-link" href="#services-section" data-en="Skip to content">مواد پر جائیں</a>
 
-  <div class="rfMobileMenu ">
-    <div class="rfMobileMenuHeader">
-      <div class="mobileLogo">
-        <img src="assets/images/logo.svg" alt="Reload Page">
+  <!-- ===== Top bar ===== -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <p class="topbar-offer">
+        <i class="fa-solid fa-tag" aria-hidden="true"></i>
+        <span data-en="Book online and get">آن لائن بکنگ پر حاصل کریں</span>
+        <strong class="pill" data-en="15% off">15% رعایت</strong>
+      </p>
+      <div class="topbar-actions">
+        <a href="tel:+923201291613" class="topbar-call" data-track="call_click">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <span class="ltr">0320-1291613</span>
+        </a>
+        <button type="button" class="lang-toggle js-lang-toggle" aria-label="Switch to English"
+          data-en-aria="اردو میں دیکھیں">
+          <i class="fa-solid fa-language" aria-hidden="true"></i>
+          <span data-en="اردو">English</span>
+        </button>
       </div>
-      <button style="background-color: none; border: none; background: white;" class="rfMobileMenuClose"><i
-          class="fa fa-close"></i></button>
     </div>
-    <ul class="rfmobileMenuList">
-      <li>
-        <a href="#services-section" class="rfMobileMenuButton">Services</a>
-      </li>
-      <li>
-        <a href="#how-it-work-section" class="rfMobileMenuButton">How it Works</a>
-      </li>
-      <li>
-        <a href="#team-section" class="rfMobileMenuButton">Team</a>
-      </li>
-      <li>
-        <a href="#coupon-section" class="rfMobileMenuButton">Offers</a>
-      </li>
-      <li>
-        <a href="#faq-section" class="rfMobileMenuButton">Faqs</a>
-      </li>
-      <li>
-        <a href="#location-section" class="rfMobileMenuButton">Location</a>
-      </li>
-      <li>
-        <a href="#location-section" class="rfMobileMenuButton">Contact Us</a>
-      </li>
-    </ul>
   </div>
 
-  <div class="container" id="home-section">
-    <header>
-      <div class="top-header">
-        <h2>Schedule an appointment now & <span>get a 15% discount</span> </h2>
-        <h2>
-          Call now:
-          <span>
-            <a href="tel: +92 3201291613">+92 3201291613</a>
-          </span>
-        </h2>
-      </div>
-      <div class="bottom-header container">
-        <figure class="logo">
-          <img src="assets/images/logo.svg" alt="Abid Autos">
-        </figure>
-        <ul class="nav-list">
-          <li>
-            <a href="#services-section">Services</a>
+  <!-- ===== Header ===== -->
+  <header class="site-header" id="home-section">
+    <div class="container header-inner">
+      <a href="#home-section" class="logo" aria-label="Abid Autos">
+        <img src="assets/images/logo.svg" alt="Abid Autos" width="210" height="40">
+      </a>
+
+      <nav class="main-nav" aria-label="Main">
+        <a href="#services-section" data-en="Services">سروسز</a>
+        <a href="#offers-section" data-en="Offers">آفرز</a>
+        <a href="#how-it-work-section" data-en="How it works">طریقۂ کار</a>
+        <a href="#reviews-section" data-en="Reviews">ریویوز</a>
+        <a href="#faq-section" data-en="FAQs">سوالات</a>
+        <a href="#location-section" data-en="Location">لوکیشن</a>
+      </nav>
+
+      <a href="#" class="btn btn-primary header-cta" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+        <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+        <span data-en="Book appointment">اپائنٹمنٹ بک کریں</span>
+      </a>
+
+      <button type="button" class="burger js-menu-open" aria-label="مینو کھولیں" data-en-aria="Open menu"
+        aria-controls="mobileMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Mobile menu ===== -->
+  <div class="menu-backdrop js-menu-close"></div>
+  <aside class="mobile-menu" id="mobileMenu" aria-label="Menu" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <img src="assets/images/logo.svg" alt="Abid Autos" width="170" height="32">
+      <button type="button" class="icon-btn js-menu-close" aria-label="مینو بند کریں" data-en-aria="Close menu">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="#services-section"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i><span
+          data-en="Services">سروسز</span></a>
+      <a href="#offers-section"><i class="fa-solid fa-tags" aria-hidden="true"></i><span
+          data-en="Offers">آفرز</span></a>
+      <a href="#how-it-work-section"><i class="fa-solid fa-list-check" aria-hidden="true"></i><span
+          data-en="How it works">طریقۂ کار</span></a>
+      <a href="#reviews-section"><i class="fa-solid fa-star" aria-hidden="true"></i><span
+          data-en="Reviews">ریویوز</span></a>
+      <a href="#faq-section"><i class="fa-solid fa-circle-question" aria-hidden="true"></i><span
+          data-en="FAQs">سوالات</span></a>
+      <a href="#location-section"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span
+          data-en="Location & contact">لوکیشن اور رابطہ</span></a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <a href="#" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+        <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+        <span data-en="Book & get 15% off">بک کریں – 15% رعایت</span>
+      </a>
+      <button type="button" class="btn btn-ghost w-100 js-lang-toggle">
+        <i class="fa-solid fa-language" aria-hidden="true"></i>
+        <span data-en="اردو میں دیکھیں">View in English</span>
+      </button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-frame">
+          <img src="assets/images/banner.webp" alt="" class="hero-img" fetchpriority="high" width="1440" height="557">
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <span class="open-status js-open-status" aria-live="polite">
+              <span class="dot"></span><span class="txt"></span>
+            </span>
+
+            <h1 class="hero-title" data-en="Expert car repair you can trust">گاڑی کی ماہرانہ مرمت، پورے بھروسے کے ساتھ
+            </h1>
+            <p class="hero-text"
+              data-en="From oil changes to engine, AC and suspension work – everything under one roof at Abid Autos. A clear price before we start, and your car ready the same day.">
+              آئل چینج سے لے کر انجن، اے سی اور سسپنشن تک — ہر کام عابد آٹوز میں ایک ہی جگہ۔ کام شروع کرنے سے پہلے واضح
+              قیمت، اور اسی دن گاڑی تیار۔</p>
+
+            <ul class="hero-chips">
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span data-en="Same-day service">اسی دن
+                  سروس</span></li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span
+                  data-en="Price agreed before work">کام سے پہلے قیمت طے</span></li>
+              <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span data-en="6-month warranty">6 ماہ
+                  کی وارنٹی</span></li>
+            </ul>
+
+            <div class="hero-ctas">
+              <a href="#" class="btn btn-primary btn-lg btn-shine" data-bs-toggle="modal"
+                data-bs-target="#appointmentModal">
+                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                <span data-en="Book & get 15% off">بک کریں – 15% رعایت</span>
+              </a>
+              <a href="https://wa.me/923201291613" class="btn btn-whatsapp btn-lg js-wa-link" target="_blank"
+                rel="noopener" data-track="whatsapp_click">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                <span data-en="WhatsApp us">واٹس ایپ کریں</span>
+              </a>
+              <a href="tel:+923201291613" class="btn btn-light btn-lg" data-track="call_click">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                <span data-en="Call now">کال کریں</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust promises -->
+        <ul class="trust-strip">
+          <li data-reveal style="--d:0">
+            <span class="trust-icon"><i class="fa-solid fa-certificate" aria-hidden="true"></i></span>
+            <div>
+              <strong data-en="Genuine parts">اصلی پرزے</strong>
+              <small data-en="Genuine or quality parts, always with a receipt">صرف اصلی یا معیاری پرزے، بل کے
+                ساتھ</small>
+            </div>
           </li>
-          <li>
-            <a href="#how-it-work-section">How it Works</a>
+          <li data-reveal style="--d:1">
+            <span class="trust-icon"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></span>
+            <div>
+              <strong data-en="Old parts handed back">پرانے پرزے آپ کے حوالے</strong>
+              <small data-en="We show you every part we replace">جو پرزہ بدلا، وہ آپ کو دکھا کر واپس</small>
+            </div>
           </li>
-          <li>
-            <a href="#team-section">Team</a>
+          <li data-reveal style="--d:2">
+            <span class="trust-icon"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i></span>
+            <div>
+              <strong data-en="Written estimate">تحریری تخمینہ</strong>
+              <small data-en="No hidden charges, no surprises">کوئی چھپی ہوئی قیمت نہیں</small>
+            </div>
           </li>
-          <li>
-            <a href="#coupon-section">Offers</a>
-          </li>
-          <li>
-            <a href="#faq-section">Faqs</a>
-          </li>
-          <li>
-            <a href="#location-section">Location</a>
-          </li>
-          <li>
-            <a href="#location-section">Contact Us</a>
+          <li data-reveal style="--d:3">
+            <span class="trust-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+            <div>
+              <strong data-en="6-month warranty">6 ماہ کی وارنٹی</strong>
+              <small data-en="On major repairs and parts fitted">بڑی مرمت اور لگائے گئے پرزوں پر</small>
+            </div>
           </li>
         </ul>
+      </div>
+    </section>
 
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule an
-          Appointment</a>
+    <!-- ===== Services ===== -->
+    <section class="section" id="services-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="What we do">ہم کیا کرتے ہیں</span>
+          <h2 data-en="Our services">ہماری سروسز</h2>
+          <p data-en="Big job or small – expert mechanics under one roof">چھوٹا کام ہو یا بڑا، ماہر مکینک ایک ہی
+            جگہ</p>
+        </header>
 
-        <div class="burgerButton">
-          <svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-18xo6c6" aria-hidden="true">
-            <path fill="currentColor"
-              d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
-            </path>
-          </svg>
+        <div class="services-grid">
+          <article class="service-card" data-reveal style="--d:0">
+            <span class="service-icon"><i class="fa-solid fa-oil-can" aria-hidden="true"></i></span>
+            <h3 data-en="Oil change">آئل چینج</h3>
+            <p data-en="Quality engine oil and filter, done in 30–45 minutes">معیاری انجن آئل اور فلٹر، 30 سے 45 منٹ
+              میں</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="oil-change"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:1">
+            <span class="service-icon"><i class="fa-solid fa-snowflake" aria-hidden="true"></i></span>
+            <h3 data-en="AC repair & gas">اے سی ریپئر اور گیس</h3>
+            <p data-en="Weak cooling? Leak check, gas refill and compressor work">کولنگ کم ہے؟ لیک چیک، گیس ری فل اور
+              کمپریسر کا کام</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="ac"><span data-en="Book now">ابھی بک کریں</span><i class="fa-solid fa-arrow-left flip-ltr"
+                aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:2">
+            <span class="service-icon"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i></span>
+            <h3 data-en="Computer scanning">کمپیوٹر اسکیننگ</h3>
+            <p data-en="Find the real cause of a check-engine light with a modern scanner">چیک انجن لائٹ کی اصل وجہ،
+              جدید اسکینر سے</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="scanning"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:3">
+            <span class="service-icon"><i class="fa-solid fa-compact-disc" aria-hidden="true"></i></span>
+            <h3 data-en="Brake service">بریک سروس</h3>
+            <p data-en="Pads, shoes, discs and brake fluid – your safety first">بریک پیڈ، شو، ڈسک اور آئل — آپ کی
+              حفاظت پہلے</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="brakes"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:4">
+            <span class="service-icon"><i class="fa-solid fa-car-side" aria-hidden="true"></i></span>
+            <h3 data-en="Suspension & steering">سسپنشن اور اسٹیئرنگ</h3>
+            <p data-en="Fix bumps, knocking noises and steering pull">جھٹکے، کھٹ کھٹ کی آواز یا اسٹیئرنگ کھینچنے کا
+              مکمل علاج</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="steering"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:0">
+            <span class="service-icon"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
+            <h3 data-en="Engine tuning">انجن ٹیوننگ</h3>
+            <p data-en="Better fuel average and a smoother engine">بہتر ایوریج اور ہموار انجن کے لیے</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="tuning"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:1">
+            <span class="service-icon"><i class="fa-solid fa-car-battery" aria-hidden="true"></i></span>
+            <h3 data-en="Electrical & battery">الیکٹریکل اور بیٹری</h3>
+            <p data-en="Battery, starter, alternator and wiring problems">بیٹری، سیلف، ڈائنمو اور وائرنگ کے مسائل</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="electrical"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:2">
+            <span class="service-icon"><i class="fa-solid fa-spray-can" aria-hidden="true"></i></span>
+            <h3 data-en="Denting & painting">ڈینٹنگ پینٹنگ</h3>
+            <p data-en="Dent removal and a factory-matched finish">ڈینٹ نکالنا اور فیکٹری جیسا رنگ</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="denting"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:3">
+            <span class="service-icon"><i class="fa-solid fa-gear" aria-hidden="true"></i></span>
+            <h3 data-en="Transmission / gearbox">ٹرانسمیشن / گیئر باکس</h3>
+            <p data-en="Hard shifting or noise? Full check and repair">گیئر بدلنے میں مشکل یا آواز؟ مکمل چیک اور
+              مرمت</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="transmission"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="service-card" data-reveal style="--d:4">
+            <span class="service-icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></span>
+            <h3 data-en="Full vehicle inspection">مکمل گاڑی کا معائنہ</h3>
+            <p data-en="A full report before a long trip or buying a used car">لمبے سفر یا پرانی گاڑی خریدنے سے پہلے
+              مکمل رپورٹ</p>
+            <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#appointmentModal"
+              data-service="inspection"><span data-en="Book now">ابھی بک کریں</span><i
+                class="fa-solid fa-arrow-left flip-ltr" aria-hidden="true"></i></a>
+          </article>
         </div>
       </div>
-    </header>
+    </section>
 
-    <section class="hero-section position-relative overflow-hidden">
-      <div class="hero-overlay"></div>
+    <!-- ===== Offers ===== -->
+    <!-- TODO (confirm with the workshop): prices and what each package includes. -->
+    <section class="section section-tint" id="offers-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="Special offers">خاص آفرز</span>
+          <h2 data-en="Clear prices, no surprises">واضح قیمت، کوئی سرپرائز نہیں</h2>
+          <p data-en="These prices apply when you book through the website">ویب سائٹ سے بکنگ پر یہ قیمتیں</p>
+        </header>
 
-      <figure class="mb-0">
-        <img src="assets/images/banner.png" alt="Abid Autos" class="hero-img">
-      </figure>
+        <div class="offers-grid">
+          <article class="offer-card" data-reveal style="--d:0">
+            <span class="offer-tag" data-en="New customers">نئے کسٹمرز کے لیے</span>
+            <h3 data-en="Computer scanning">کمپیوٹر اسکیننگ</h3>
+            <div class="offer-price"><small>PKR</small><span class="ltr">500</span></div>
+            <ul class="offer-list">
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span data-en="Full engine scan">مکمل انجن
+                  اسکین</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span
+                  data-en="Fault report sent on WhatsApp">خرابی کی رپورٹ واٹس ایپ پر</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span
+                  data-en="Free advice from the mechanic">مکینک کا مفت مشورہ</span></li>
+            </ul>
+            <a href="#" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+              data-bs-target="#appointmentModal" data-service="scanning"><span data-en="Book this offer">یہ آفر بک
+                کریں</span></a>
+          </article>
 
-      <div class="container hero-container">
-        <div class="hero-content">
-          <h1>Expert Abid Autos</h1>
-          <p>Trust Firestone Complete Auto Care for the best auto repair and care. Schedule same-day repair service for
-            your vehicle today!</p>
+          <article class="offer-card is-featured" data-reveal style="--d:1">
+            <span class="offer-ribbon" data-en="Most popular">سب سے مقبول</span>
+            <span class="offer-tag" data-en="Package">پیکج</span>
+            <h3 data-en="Oil change package">آئل چینج پیکج</h3>
+            <div class="offer-price"><small>PKR</small><span class="ltr">6,000</span></div>
+            <ul class="offer-list">
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span
+                  data-en="Synthetic-blend oil (up to 4 litres)">سنتھیٹک بلینڈ آئل (4 لیٹر تک)</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span data-en="New oil filter">نیا آئل
+                  فلٹر</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span data-en="20-point check-up">20 پوائنٹ
+                  چیک اپ</span></li>
+            </ul>
+            <a href="#" class="btn btn-primary w-100 btn-shine" data-bs-toggle="modal"
+              data-bs-target="#appointmentModal" data-service="oil-change"><span data-en="Book this offer">یہ آفر بک
+                کریں</span></a>
+          </article>
 
-          <div class="d-flex flex-wrap gap-3 mt-4">
-            <a href="#" class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#appointmentModal">
-              Schedule Appointment
-            </a>
-            <a href="tel:+923201291613" class="btn btn-primary btn-lg px-4">
-              <i class="fa-solid fa-phone-flip me-2"></i>Call Now
+          <article class="offer-card" data-reveal style="--d:2">
+            <span class="offer-tag" data-en="Best value">بہترین قیمت</span>
+            <h3 data-en="Full service">مکمل سروس</h3>
+            <div class="offer-price"><small>PKR</small><span class="ltr">7,000</span></div>
+            <ul class="offer-list">
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span data-en="Oil and oil filter">آئل اور آئل
+                  فلٹر</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span data-en="Air filter cleaning">ایئر فلٹر
+                  کی صفائی</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span data-en="Computer scan">کمپیوٹر
+                  اسکیننگ</span></li>
+              <li><i class="fa-solid fa-check" aria-hidden="true"></i><span
+                  data-en="Brake & suspension check">بریک اور سسپنشن چیک</span></li>
+            </ul>
+            <a href="#" class="btn btn-outline-primary w-100" data-bs-toggle="modal"
+              data-bs-target="#appointmentModal" data-service="full-service"><span data-en="Book this offer">یہ آفر
+                بک کریں</span></a>
+          </article>
+        </div>
+        <p class="fine-print" data-reveal
+          data-en="Prices can vary by car model – the final price is always confirmed with you before any work starts.">
+          قیمت گاڑی کے ماڈل کے حساب سے مختلف ہو سکتی ہے — حتمی قیمت ہمیشہ کام شروع کرنے سے پہلے آپ کو بتائی جاتی
+          ہے۔</p>
+      </div>
+    </section>
+
+    <!-- ===== How it works ===== -->
+    <section class="section" id="how-it-work-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="Simple process">آسان طریقہ</span>
+          <h2 data-en="How it works">یہ کیسے کام کرتا ہے</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step" data-reveal style="--d:0">
+            <span class="step-icon"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><b>1</b></span>
+            <h3 data-en="Book on WhatsApp or online">واٹس ایپ یا آن لائن بک کریں</h3>
+            <p data-en="Choose a service and a time – it takes under 2 minutes.">سروس اور وقت چنیں — 2 منٹ سے کم
+              لگتے ہیں۔</p>
+          </li>
+          <li class="step" data-reveal style="--d:1">
+            <span class="step-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><b>2</b></span>
+            <h3 data-en="Inspection & price">معائنہ اور قیمت</h3>
+            <p data-en="We check the car and agree the price with you before starting.">ہم گاڑی چیک کر کے، کام شروع
+              کرنے سے پہلے قیمت آپ سے طے کرتے ہیں۔</p>
+          </li>
+          <li class="step" data-reveal style="--d:2">
+            <span class="step-icon"><i class="fa-solid fa-car-on" aria-hidden="true"></i><b>3</b></span>
+            <h3 data-en="Ready to drive">گاڑی تیار</h3>
+            <p data-en="After a quality check, your car is handed back with a warranty.">کوالٹی چیک کے بعد گاڑی
+              وارنٹی کے ساتھ آپ کے حوالے۔</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Stats ===== -->
+    <!-- TODO (confirm with the workshop): years in business and number of cars serviced. -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div class="stat" data-reveal style="--d:0">
+          <span class="stat-num ltr"><span class="js-count" data-count="15">15</span>+</span>
+          <span class="stat-label" data-en="Years of experience">سال کا تجربہ</span>
+        </div>
+        <div class="stat" data-reveal style="--d:1">
+          <span class="stat-num ltr"><span class="js-count" data-count="5000">5,000</span>+</span>
+          <span class="stat-label" data-en="Cars serviced">گاڑیوں کی سروس</span>
+        </div>
+        <div class="stat" data-reveal style="--d:2">
+          <span class="stat-num ltr"><span class="js-count" data-count="6">6</span></span>
+          <span class="stat-label" data-en="Month warranty">ماہ کی وارنٹی</span>
+        </div>
+        <div class="stat" data-reveal style="--d:3">
+          <span class="stat-num ltr"><span class="js-count" data-count="100">100</span>%</span>
+          <span class="stat-label" data-en="Price agreed before work">کام سے پہلے قیمت طے</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Reviews ===== -->
+    <!-- DEMO CONTENT: replace with real customer reviews (e.g. copied from Google with permission). -->
+    <section class="section section-tint" id="reviews-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="Reviews">ریویوز</span>
+          <h2 data-en="What our customers say">ہمارے کسٹمرز کیا کہتے ہیں</h2>
+          <span class="demo-tag" data-en="Sample reviews – replace with real ones">نمونہ ریویوز — اصل سے بدلیں</span>
+        </header>
+
+        <div class="reviews-grid">
+          <figure class="review-card" data-reveal style="--d:0">
+            <div class="stars" aria-label="5/5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote
+              data-en="My AC wasn't cooling at all – fixed the same day. They told me the price first and even showed me the old part.">
+              اے سی بالکل ٹھنڈا نہیں کر رہا تھا، اسی دن ٹھیک ہو گیا۔ قیمت پہلے بتا دی اور پرانا پرزہ بھی دکھایا۔
+            </blockquote>
+            <figcaption>
+              <span class="avatar">ع</span>
+              <span><strong data-en="Imran S.">عمران ایس</strong><small data-en="Suzuki Cultus">سوزوکی
+                  کلٹس</small></span>
+            </figcaption>
+          </figure>
+
+          <figure class="review-card" data-reveal style="--d:1">
+            <div class="stars" aria-label="5/5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote
+              data-en="I took my check-engine light to several places – the scan here found the real problem. Honest people.">
+              چیک انجن لائٹ کئی جگہ دکھائی، یہاں اسکیننگ سے اصل مسئلہ نکلا۔ ایماندار لوگ ہیں۔
+            </blockquote>
+            <figcaption>
+              <span class="avatar">س</span>
+              <span><strong data-en="Sana R.">ثنا آر</strong><small data-en="Toyota Corolla">ٹویوٹا
+                  کرولا</small></span>
+            </figcaption>
+          </figure>
+
+          <figure class="review-card" data-reveal style="--d:2">
+            <div class="stars" aria-label="5/5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote data-en="Booked on WhatsApp and the car was ready on time. Got the 15% discount too.">
+              واٹس ایپ پر بکنگ کی، وقت پر گاڑی تیار تھی۔ 15% رعایت بھی ملی۔
+            </blockquote>
+            <figcaption>
+              <span class="avatar">ف</span>
+              <span><strong data-en="Faisal K.">فیصل کے</strong><small data-en="Honda City">ہونڈا
+                  سٹی</small></span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="text-center mt-4" data-reveal>
+          <!-- TODO: replace with the workshop's Google Business Profile review link. -->
+          <a href="https://www.google.com/maps/search/?api=1&query=Abid+Autos" target="_blank" rel="noopener"
+            class="btn btn-ghost">
+            <i class="fa-brands fa-google" aria-hidden="true"></i>
+            <span data-en="See or leave a review on Google">گوگل پر ریویو دیکھیں یا لکھیں</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Team ===== -->
+    <!-- DEMO CONTENT: replace names, roles and add real photos of the mechanics. -->
+    <section class="section" id="team-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="Our team">ہماری ٹیم</span>
+          <h2 data-en="Meet our mechanics">ہمارے ماہر مکینک</h2>
+          <span class="demo-tag" data-en="Sample team – add real names and photos">نمونہ ٹیم — اصل نام اور تصاویر
+            لگائیں</span>
+        </header>
+
+        <div class="team-grid">
+          <div class="team-card" data-reveal style="--d:0">
+            <span class="team-avatar"><i class="fa-solid fa-user-gear" aria-hidden="true"></i></span>
+            <h3 data-en="Ahmed Khan">احمد خان</h3>
+            <p class="team-role" data-en="Master technician">ماسٹر ٹیکنیشن</p>
+            <span class="team-exp" data-en="15 years' experience">15 سال کا تجربہ</span>
+          </div>
+          <div class="team-card" data-reveal style="--d:1">
+            <span class="team-avatar"><i class="fa-solid fa-gears" aria-hidden="true"></i></span>
+            <h3 data-en="Zubair Abid">زبیر عابد</h3>
+            <p class="team-role" data-en="Engine specialist">انجن اسپیشلسٹ</p>
+            <span class="team-exp" data-en="10 years' experience">10 سال کا تجربہ</span>
+          </div>
+          <div class="team-card" data-reveal style="--d:2">
+            <span class="team-avatar"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span>
+            <h3 data-en="Usman Ali">عثمان علی</h3>
+            <p class="team-role" data-en="Electrical & AC expert">الیکٹریکل اور اے سی ماہر</p>
+            <span class="team-exp" data-en="8 years' experience">8 سال کا تجربہ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Gallery ===== -->
+    <!-- DEMO CONTENT: replace with real photos from the workshop (before/after jobs work best). -->
+    <section class="section section-tint" id="gallery-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="Gallery">گیلری</span>
+          <h2 data-en="Inside our workshop">ہماری ورکشاپ</h2>
+          <span class="demo-tag" data-en="Sample photos – add workshop photos">نمونہ تصاویر — ورکشاپ کی تصاویر
+            لگائیں</span>
+        </header>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item is-wide" data-reveal="zoom" style="--d:0">
+            <img src="assets/images/banner.webp" alt="" loading="lazy" width="1440" height="557">
+            <figcaption data-en="Wheel & tyre work">ٹائر اور وہیل کا کام</figcaption>
+          </figure>
+          <figure class="gallery-item is-tall" data-reveal="zoom" style="--d:1">
+            <img src="assets/images/services/oil-change.webp" alt="" loading="lazy">
+            <figcaption data-en="Oil change">آئل چینج</figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal="zoom" style="--d:2">
+            <img src="assets/images/services/steering-suspension.webp" alt="" loading="lazy">
+            <figcaption data-en="Suspension repair">سسپنشن کی مرمت</figcaption>
+          </figure>
+          <figure class="gallery-item" data-reveal="zoom" style="--d:3">
+            <img src="assets/images/services/transmission.webp" alt="" loading="lazy">
+            <figcaption data-en="Gearbox repair">گیئر باکس کی مرمت</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <!-- TODO (confirm with the workshop): payment methods and makes serviced. -->
+    <section class="section" id="faq-section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <span class="eyebrow" data-en="FAQs">سوالات</span>
+          <h2 data-en="Frequently asked questions">اکثر پوچھے جانے والے سوالات</h2>
+        </header>
+
+        <div class="accordion faq" id="faqAccordion" data-reveal>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                aria-expanded="true" data-en="Will I know the price before work starts?">کیا کام سے پہلے قیمت پتا چل
+                جاتی ہے؟</button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body"
+                data-en="Always. After the inspection we tell you the price, and no work is done without your OK.">
+                بالکل۔ معائنے کے بعد آپ کو قیمت بتائی جاتی ہے، اور آپ کی اجازت کے بغیر کوئی کام نہیں ہوتا۔</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#faq2" aria-expanded="false" data-en="Are the parts genuine?">کیا پرزے اصلی ہوتے
+                ہیں؟</button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body"
+                data-en="We fit genuine or quality parts, give you the receipt, and hand back the old part we replaced.">
+                ہم اصلی یا معیاری پرزے لگاتے ہیں، بل دیتے ہیں، اور بدلا ہوا پرانا پرزہ آپ کو واپس کرتے ہیں۔</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#faq3" aria-expanded="false" data-en="Do repairs come with a warranty?">کیا مرمت پر
+                وارنٹی ملتی ہے؟</button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body"
+                data-en="Yes – major mechanical repairs and parts fitted by us carry a 6-month warranty.">جی ہاں، بڑی
+                مکینیکل مرمت اور ہمارے لگائے گئے پرزوں پر 6 ماہ کی وارنٹی ہے۔</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#faq4" aria-expanded="false" data-en="How long does an oil change take?">آئل چینج میں
+                کتنا وقت لگتا ہے؟</button>
+            </h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body"
+                data-en="Usually 30–45 minutes. Book ahead on WhatsApp and you won't have to wait.">عام طور پر 30 سے 45
+                منٹ۔ واٹس ایپ پر پہلے سے بکنگ کریں تو انتظار نہیں کرنا پڑتا۔</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#faq5" aria-expanded="false" data-en="How can I pay?">ادائیگی کیسے کر سکتے
+                ہیں؟</button>
+            </h3>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body" data-en="Cash, JazzCash, Easypaisa or bank transfer.">کیش، جاز کیش، ایزی پیسہ
+                یا بینک ٹرانسفر۔</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#faq6" aria-expanded="false" data-en="Which cars do you work on?">آپ کن گاڑیوں پر کام
+                کرتے ہیں؟</button>
+            </h3>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body"
+                data-en="Suzuki, Toyota, Honda, KIA, Hyundai, Changan and all other common cars.">سوزوکی، ٹویوٹا، ہونڈا،
+                کِیا، ہنڈائی، چنگان اور دیگر تمام عام گاڑیاں۔</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Quote form + location ===== -->
+    <section class="section section-tint" id="location-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card" data-reveal>
+            <h2 class="h3" data-en="Get a free quote">مفت تخمینہ لیں</h2>
+            <p class="muted" data-en="Tell us the problem and we'll reply on WhatsApp.">گاڑی کا مسئلہ بتائیں، ہم
+              واٹس ایپ پر جواب دیں گے۔</p>
+            <form id="contactForm" class="js-lead-form" data-form="contact" novalidate>
+              <div class="mb-3">
+                <input type="text" name="name" class="form-control form-control-lg" placeholder="آپ کا نام"
+                  data-en-ph="Your name" required autocomplete="name" aria-label="Name">
+                <div class="invalid-feedback" data-en="Please enter your name.">براہ کرم اپنا نام لکھیں۔</div>
+              </div>
+              <div class="mb-3">
+                <input type="tel" name="phone" class="form-control form-control-lg" placeholder="03XX-XXXXXXX"
+                  required autocomplete="tel" inputmode="tel" dir="ltr" aria-label="Phone">
+                <div class="invalid-feedback" data-en="Please enter a valid mobile number, e.g. 0320-1234567.">درست
+                  موبائل نمبر لکھیں، مثلاً 0320-1234567</div>
+              </div>
+              <div class="mb-3">
+                <input type="text" name="vehicle" class="form-control form-control-lg"
+                  placeholder="گاڑی (مثلاً سوزوکی آلٹو 2019)" data-en-ph="Car (e.g. Suzuki Alto 2019)"
+                  aria-label="Car">
+              </div>
+              <div class="mb-3">
+                <textarea name="message" class="form-control form-control-lg" rows="3"
+                  placeholder="مسئلہ کیا ہے؟ (مثلاً اے سی ٹھنڈا نہیں کر رہا)"
+                  data-en-ph="What's the problem? (e.g. AC not cooling)" aria-label="Problem"></textarea>
+              </div>
+              <button type="submit" class="btn btn-whatsapp btn-lg w-100">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                <span data-en="Send on WhatsApp">واٹس ایپ پر بھیجیں</span>
+              </button>
+              <div class="form-success alert alert-success mt-3 d-none" role="status">
+                <span data-en="Thanks! WhatsApp has opened – just press send. Didn't open? Call">شکریہ! واٹس ایپ کھل
+                  گیا ہے — بس سینڈ دبائیں۔ نہیں کھلا؟ کال کریں</span>
+                <a href="tel:+923201291613" class="ltr">0320-1291613</a>
+              </div>
+            </form>
+          </div>
+
+          <div class="location-card" data-reveal style="--d:1">
+            <h2 class="h3" data-en="Find our workshop">ورکشاپ کا پتا</h2>
+            <ul class="info-list">
+              <!-- TODO: put the workshop's full street address here. -->
+              <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span
+                  data-en="Karachi, Pakistan">کراچی، پاکستان</span></li>
+              <li><i class="fa-solid fa-clock" aria-hidden="true"></i><span
+                  data-en="Monday – Saturday: 9am – 7pm">پیر تا ہفتہ: صبح 9 سے شام 7 بجے تک</span></li>
+              <li><i class="fa-solid fa-door-closed" aria-hidden="true"></i><span data-en="Sunday: closed">اتوار:
+                  بند</span></li>
+              <li><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+923201291613" class="ltr"
+                  data-track="call_click">0320-1291613</a></li>
+            </ul>
+            <div class="map-wrap">
+              <iframe title="Abid Autos location" src="https://www.google.com/maps?q=24.8607,67.0707&z=15&output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=24.8607,67.0707" target="_blank"
+              rel="noopener" class="btn btn-outline-primary w-100 mt-3" data-track="directions_click">
+              <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i>
+              <span data-en="Get directions">راستہ دیکھیں</span>
             </a>
           </div>
         </div>
       </div>
     </section>
 
-  </div>
-
-  <section class="services-section" id="services-section">
-    <div class="container">
-      <h3 class="text-center mb-4">
-        GET QUICK AUTO REPAIR SERVICES FROM OUR EXPERTS
-      </h3>
-
-      <div class="services-slider">
-        <div class="service-card">
-          <figure>
-            <img src="assets/images/services/steering-suspension.webp" alt="Steering & Suspension">
-          </figure>
-          <h4>Steering & Suspension</h4>
-          <p>
-            Get quick auto repair services from our experts. Schedule same-day repair service today.
+    <!-- ===== Final call to action ===== -->
+    <section class="cta-band">
+      <div class="container cta-inner" data-reveal>
+        <div>
+          <h2 data-en="Car trouble?">گاڑی میں کوئی مسئلہ ہے؟</h2>
+          <p
+            data-en="WhatsApp us now – send a photo or a voice note and we'll tell you what's wrong and roughly what it will cost.">
+            ابھی واٹس ایپ کریں — تصویر یا وائس نوٹ بھیجیں، ہم بتائیں گے کہ مسئلہ کیا ہے اور تقریباً کتنا خرچ آئے گا۔
           </p>
-          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
-            Appointment</a>
         </div>
+        <div class="cta-actions">
+          <a href="https://wa.me/923201291613" class="btn btn-whatsapp btn-lg js-wa-link" target="_blank"
+            rel="noopener" data-track="whatsapp_click">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <span data-en="WhatsApp now">ابھی واٹس ایپ کریں</span>
+          </a>
+          <a href="tel:+923201291613" class="btn btn-light btn-lg" data-track="call_click">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <span class="ltr">0320-1291613</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="service-card">
-          <figure>
-            <img src="assets/images/services/oil-change.webp" alt="Oil Change">
-          </figure>
-          <h4>Oil Change</h4>
-          <p>
-            Professional oil change to keep your engine healthy and running smoothly.
-          </p>
-          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
-            Appointment</a>
-        </div>
-
-        <div class="service-card">
-          <figure>
-            <img src="assets/images/services/transmission.webp" alt="Transmission">
-          </figure>
-          <h4>Transmission</h4>
-          <p>
-            Advanced diagnostics to detect and fix issues before they get expensive.
-          </p>
-          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
-            Appointment</a>
-        </div>
-        <div class="service-card">
-          <figure>
-            <img src="assets/images/services/transmission.webp" alt="Transmission">
-          </figure>
-          <h4>Transmission</h4>
-          <p>
-            Advanced diagnostics to detect and fix issues before they get expensive.
-          </p>
-          <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule
-            Appointment</a>
-        </div>
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/images/logo.svg" alt="Abid Autos" width="180" height="34" class="footer-logo">
+        <p data-en="Reliable car repair and maintenance – done honestly, done right.">گاڑیوں کی قابلِ اعتماد مرمت
+          اور دیکھ بھال — ایمانداری اور معیار کے ساتھ۔</p>
+      </div>
+      <div>
+        <h3 data-en="Quick links">فوری لنکس</h3>
+        <ul class="footer-links">
+          <li><a href="#services-section" data-en="Services">سروسز</a></li>
+          <li><a href="#offers-section" data-en="Offers">آفرز</a></li>
+          <li><a href="#how-it-work-section" data-en="How it works">طریقۂ کار</a></li>
+          <li><a href="#faq-section" data-en="FAQs">سوالات</a></li>
+          <li><a href="#location-section" data-en="Location">لوکیشن</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-en="Get in touch">رابطہ کریں</h3>
+        <a href="tel:+923201291613" class="footer-phone ltr" data-track="call_click">0320-1291613</a>
+        <p data-en="Monday – Saturday: 9am – 7pm">پیر تا ہفتہ: صبح 9 سے شام 7 بجے تک</p>
+        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#appointmentModal">
+          <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+          <span data-en="Book appointment">اپائنٹمنٹ بک کریں</span>
+        </a>
       </div>
     </div>
-  </section>
-
-  <section class="how-it-works" id="how-it-work-section">
-    <div class="container">
-      <h3 class="text-center mb-3 mb-md-5 fw-bold">HOW OUR REPAIR SERVICES WORK</h3>
-
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="how-card text-center p-4">
-            <div class="icon-wrapper mb-4">
-              <i class="fa-solid fa-calendar-days"></i> <span class="step-badge">1</span>
-            </div>
-            <h4>Book Online</h4>
-            <p>Select your required service and pick a time slot that fits your schedule. It takes less than 2 minutes.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="how-card text-center p-4">
-            <div class="icon-wrapper mb-4">
-              <i class="fa-solid fa-screwdriver-wrench"></i> <span class="step-badge">2</span>
-            </div>
-            <h4>Expert Inspection</h4>
-            <p>Bring your car in or have our pros take a look. We provide a transparent quote before any work starts.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="how-card text-center p-4">
-            <div class="icon-wrapper mb-4">
-              <i class="fa-solid fa-car-on"></i> <span class="step-badge">3</span>
-            </div>
-            <h4>Ready to Roll</h4>
-            <p>Once fixed, we perform a quality check. Pick up your keys and enjoy a smooth, safe drive back home.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="contact" id="location-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 mb-4 mb-md-0">
-          <h3 class="fw-bold mb-4">Message Us</h3>
-          <form>
-            <div class="mb-3">
-              <input type="text" class="form-control form-control-lg" placeholder="Your Name">
-            </div>
-            <div class="mb-3">
-              <input type="email" class="form-control form-control-lg" placeholder="Email Address">
-            </div>
-            <div class="mb-3">
-              <textarea class="form-control form-control-lg" rows="4" placeholder="How can we help?"></textarea>
-            </div>
-            <button class="btn btn-primary btn-lg w-100">Send Message</button>
-          </form>
-        </div>
-        <div class="col-md-6">
-          <h3 class="fw-bold mb-4">Find Our Workshop</h3>
-          <div class="map-container rounded shadow-sm overflow-hidden">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.31399252169!2d67.0707!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDUxJzM4LjUiTiA2N8KwMDQnMTQuNSJF!5e0!3m2!1sen!2s!4v1700000000000"
-              width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <section id="team-section" class="team-section py-3">
-    <div class="container">
-      <h3 class="text-center fw-bold mb-5">MEET OUR EXPERT MECHANICS</h3>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="team-card text-center">
-            <img src="https://i.pravatar.cc/300?img=11" alt="Mechanic" class="rounded-circle mb-3 mx-auto">
-            <h5>Ahmed Khan</h5>
-            <p class="text-primary">Master Technician</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="team-card text-center">
-            <img src="https://i.pravatar.cc/300?img=12" alt="Mechanic" class="rounded-circle mb-3 mx-auto">
-            <h5>Zubair Abid</h5>
-            <p class="text-primary">Engine Specialist</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="team-card text-center">
-            <img src="https://i.pravatar.cc/300?img=13" alt="Mechanic" class="rounded-circle mb-3 mx-auto">
-            <h5>Usman Ali</h5>
-            <p class="text-primary">Electrical Expert</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="stats-section text-white" id="stat-section">
-    <div class="container">
-      <div class="row align-items-center text-center">
-        <div class="col-6 col-md-3">
-          <h2 class="fw-bold">15+</h2>
-          <p class="mb-0">Years Experience</p>
-        </div>
-        <div class="col-6 col-md-3">
-          <h2 class="fw-bold">10k+</h2>
-          <p>Happy Clients</p>
-        </div>
-        <div class="col-6 col-md-3">
-          <h2 class="fw-bold">50+</h2>
-          <p class="mb-0">Expert Mechanics</p>
-        </div>
-        <div class="col-6 col-md-3">
-          <h2 class="fw-bold">100%</h2>
-          <p class="mb-0">Service Warranty</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="coupon-section text-center" id="coupon-section">
-    <h2 class="mb-4 fw-bold">Take Advantage of Our Specials - Call us Today!</h2>
-
-    <div class="container">
-
-      <div class="row justify-content-center gap-3">
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="coupon-card">
-            <div class="coupon-brand">Abid Autos</div>
-            <div class="coupon-price">PKR 7000</div>
-            <p class="coupon-text">Abid AUTOMOTIVE SPECIAL</p>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="coupon-card">
-            <div class="coupon-brand">Abid Autos</div>
-            <div class="coupon-price">PKR 6000</div>
-            <p class="coupon-text">SYNTHETIC BLEND OIL CHANGE</p>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-2">
-          <div class="coupon-card">
-            <div class="coupon-brand">Abid Autos</div>
-            <div class="coupon-price">PKR 500</div>
-            <p class="coupon-text">NEW CUSTOMER SPECIAL</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-
-
-  <section class="faq-section bg-light" id="faqp-section">
-    <div class="container">
-      <h3 class="text-center mb-5">FREQUENTLY ASKED QUESTIONS</h3>
-      <div class="accordion mx-auto" id="faqAccordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-              How long does a standard oil change take?
-            </button>
-          </h2>
-          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Typically, an oil change at Abid Autos takes about 30 to 45 minutes. We recommend booking in advance to
-              skip the wait!
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-              Do you provide a warranty on repairs?
-            </button>
-          </h2>
-          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Yes, we provide a 6-month warranty on all major mechanical repairs and parts replaced at our workshop.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="gallery-section" id="gallery-section">
-    <div class="container">
-      <h4 class="mb-5 text-center fw-bold text-uppercase">Our Gallery</h4>
-
-      <div class="row g-4 justify-content-center">
-
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="gallery-card">
-            <img src="https://picsum.photos/400/600" alt="Gallery Image" class="img-fluid">
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="gallery-card">
-            <img src="https://picsum.photos/400/300" alt="Gallery Image" class="img-fluid">
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="gallery-card">
-            <img src="https://picsum.photos/400/500" alt="Gallery Image" class="img-fluid">
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="gallery-card">
-            <img src="https://picsum.photos/400/700" alt="Gallery Image" class="img-fluid">
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="gallery-card">
-            <img src="https://picsum.photos/400/400" alt="Gallery Image" class="img-fluid">
-          </div>
-        </div>
-
-        <div class="col-6 col-md-4 col-lg-3">
-          <div class="gallery-card">
-            <img src="https://picsum.photos/400/550" alt="Gallery Image" class="img-fluid">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-
-  <footer class="footer-section">
-    <div class="container">
-      <div class="row gy-4">
-
-        <div class="col-md-4">
-          <figure class="footer-logo mb-3">
-            <img src="assets/images/logo.svg" alt="Abid Autos" width="180">
-          </figure>
-          <p class="text-muted">Providing top-tier automotive services with a commitment to quality and customer
-            satisfaction. Schedule your visit today and experience the difference.</p>
-        </div>
-
-        <div class="col-md-4 ps-md-5">
-          <h5 class="fw-bold mb-3">Quick Links</h5>
-          <ul class="footer-links list-unstyled">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">How it Works</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="#">Location</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-4">
-          <h5 class="fw-bold mb-3">Get In Touch</h5>
-          <p class="mb-2">Need immediate assistance?</p>
-          <div class="footer-contact">
-            <h4 class="fw-bold">
-              <a href="tel:+923201291613" class="text-decoration-none">+92 3201291613</a>
-            </h4>
-            <p class="text-muted">Monday — Saturday: 9am - 7pm</p>
-          </div>
-          <a href="#" class="btn btn-outline-primary mt-2" data-bs-toggle="modal"
-            data-bs-target="#appointmentModal">Book Appointment</a>
-        </div>
-
-      </div>
-
-      <hr class="mt-5 mb-4 border-secondary">
-
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center text-md-start">
-          <p class="mb-0 text-muted">&copy; 2026 Abid Autos. All rights reserved.</p>
-        </div>
-        <div class="col-md-6 text-center text-md-end">
-
-        </div>
-      </div>
+    <div class="container footer-bottom">
+      <p data-en="© 2026 Abid Autos. All rights reserved.">© 2026 عابد آٹوز۔ جملہ حقوق محفوظ ہیں۔</p>
     </div>
   </footer>
 
-
+  <!-- ===== Booking modal ===== -->
   <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content border-0 shadow-lg">
-        <div class="modal-header bg-primary text-white">
-          <h5 class="modal-title fw-bold" id="appointmentModalLabel">
-            <i class="fa-solid fa-calendar-check me-2"></i>Schedule Your 15% Discount Service
-          </h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="appointmentModalLabel">
+            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+            <span data-en="Book your appointment – 15% off">اپائنٹمنٹ بک کریں — 15% رعایت</span>
+          </h2>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="بند کریں"
+            data-en-aria="Close"></button>
         </div>
-        <div class="modal-body p-4">
-          <form id="appointmentForm">
+        <div class="modal-body">
+          <form id="appointmentForm" class="js-lead-form" data-form="appointment" novalidate>
             <div class="row g-3">
               <div class="col-md-6">
-                <label class="form-label fw-bold">Full Name</label>
-                <input type="text" class="form-control" placeholder="Abid Khan" required>
+                <label class="form-label" for="apptName" data-en="Full name">پورا نام</label>
+                <input type="text" id="apptName" name="name" class="form-control" placeholder="مثلاً عابد خان"
+                  data-en-ph="e.g. Abid Khan" required autocomplete="name">
+                <div class="invalid-feedback" data-en="Please enter your name.">براہ کرم اپنا نام لکھیں۔</div>
               </div>
               <div class="col-md-6">
-                <label class="form-label fw-bold">Phone Number</label>
-                <input type="tel" class="form-control" placeholder="+92 320..." required>
+                <label class="form-label" for="apptPhone" data-en="Mobile / WhatsApp number">موبائل / واٹس ایپ
+                  نمبر</label>
+                <input type="tel" id="apptPhone" name="phone" class="form-control" placeholder="03XX-XXXXXXX"
+                  required autocomplete="tel" inputmode="tel" dir="ltr">
+                <div class="invalid-feedback" data-en="Please enter a valid mobile number, e.g. 0320-1234567.">درست
+                  موبائل نمبر لکھیں، مثلاً 0320-1234567</div>
               </div>
 
               <div class="col-md-12">
-                <label class="form-label fw-bold">Select Service</label>
-                <select class="form-select" required>
-                  <option value="" selected disabled>Choose an option...</option>
-                  <option value="oil-change">Oil Change</option>
-                  <option value="transmission">Transmission Repair</option>
-                  <option value="steering">Steering & Suspension</option>
-                  <option value="inspection">Full Vehicle Inspection</option>
-                  <option value="other">Other Maintenance</option>
+                <label class="form-label" for="apptService" data-en="Select a service">سروس منتخب کریں</label>
+                <select id="apptService" name="service" class="form-select" required>
+                  <option value="" selected disabled data-en="Choose…">منتخب کریں…</option>
+                  <option value="oil-change" data-en="Oil change">آئل چینج</option>
+                  <option value="ac" data-en="AC repair & gas">اے سی ریپئر اور گیس</option>
+                  <option value="scanning" data-en="Computer scanning">کمپیوٹر اسکیننگ</option>
+                  <option value="brakes" data-en="Brake service">بریک سروس</option>
+                  <option value="steering" data-en="Suspension & steering">سسپنشن اور اسٹیئرنگ</option>
+                  <option value="tuning" data-en="Engine tuning">انجن ٹیوننگ</option>
+                  <option value="electrical" data-en="Electrical & battery">الیکٹریکل اور بیٹری</option>
+                  <option value="denting" data-en="Denting & painting">ڈینٹنگ پینٹنگ</option>
+                  <option value="transmission" data-en="Transmission / gearbox">ٹرانسمیشن / گیئر باکس</option>
+                  <option value="inspection" data-en="Full vehicle inspection">مکمل گاڑی کا معائنہ</option>
+                  <option value="full-service" data-en="Full service package">مکمل سروس پیکج</option>
+                  <option value="other" data-en="Something else">کچھ اور</option>
                 </select>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label fw-bold">Vehicle Make & Model</label>
-                <input type="text" class="form-control" placeholder="Toyota Corolla 2022" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label fw-bold">Preferred Date</label>
-                <input type="date" class="form-control" required>
+                <div class="invalid-feedback" data-en="Please choose a service.">براہ کرم سروس منتخب کریں۔</div>
               </div>
 
               <div class="col-md-12">
-                <label class="form-label fw-bold">Describe the Issue (Optional)</label>
-                <textarea class="form-control" rows="3"
-                  placeholder="Explain what's happening with your car..."></textarea>
+                <label class="form-label" for="apptVehicle" data-en="Car make & model">گاڑی کا ماڈل</label>
+                <input type="text" id="apptVehicle" name="vehicle" class="form-control"
+                  placeholder="مثلاً ٹویوٹا کرولا 2022" data-en-ph="e.g. Toyota Corolla 2022" required>
+                <div class="invalid-feedback" data-en="Please enter your car.">براہ کرم گاڑی کا ماڈل لکھیں۔</div>
+              </div>
+
+              <!-- Day picker: main.js fills in the next working days (Sundays skipped) -->
+              <div class="col-md-12">
+                <div class="picker-head">
+                  <span class="form-label" id="apptDateLabel" data-en="Which day suits you?">کون سا دن مناسب
+                    ہے؟</span>
+                  <small class="picker-hint" data-en="Sunday closed">اتوار بند</small>
+                </div>
+                <div class="day-picker js-day-picker" id="apptDay" data-name="date" role="radiogroup"
+                  aria-labelledby="apptDateLabel">
+                  <button type="button" class="day-arrow is-prev" aria-label="پچھلے دن" data-en-aria="Earlier days"
+                    tabindex="-1"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+                  <div class="day-list"></div>
+                  <button type="button" class="day-arrow is-next" aria-label="اگلے دن" data-en-aria="Later days"
+                    tabindex="-1"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+                </div>
+                <div class="invalid-feedback picker-feedback" data-en="Please pick a day.">براہ کرم دن منتخب
+                  کریں۔</div>
+              </div>
+
+              <div class="col-md-12">
+                <span class="form-label" id="apptTimeLabel" data-en="Preferred time (optional)">پسندیدہ وقت
+                  (اختیاری)</span>
+                <div class="slot-picker" role="radiogroup" aria-labelledby="apptTimeLabel">
+                  <input type="radio" class="slot-radio" name="time" id="slotMorning" value="morning">
+                  <label class="slot-card" for="slotMorning"><i class="fa-solid fa-sun" aria-hidden="true"></i><span
+                      data-en="Morning">صبح</span><small class="ltr">9 – 12</small></label>
+                  <input type="radio" class="slot-radio" name="time" id="slotAfternoon" value="afternoon">
+                  <label class="slot-card" for="slotAfternoon"><i class="fa-solid fa-cloud-sun"
+                      aria-hidden="true"></i><span data-en="Afternoon">دوپہر</span><small class="ltr">12 –
+                      4</small></label>
+                  <input type="radio" class="slot-radio" name="time" id="slotEvening" value="evening">
+                  <label class="slot-card" for="slotEvening"><i class="fa-solid fa-moon" aria-hidden="true"></i><span
+                      data-en="Evening">شام</span><small class="ltr">4 – 7</small></label>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <label class="form-label" for="apptIssue" data-en="Describe the issue (optional)">مسئلہ بتائیں
+                  (اختیاری)</label>
+                <textarea id="apptIssue" name="message" class="form-control" rows="3"
+                  placeholder="گاڑی میں کیا مسئلہ ہے؟" data-en-ph="What's happening with your car?"></textarea>
               </div>
             </div>
 
-            <div class="mt-4">
-              <button type="submit" class="btn btn-primary w-100 py-3 fw-bold shadow-sm">
-                Confirm Appointment Now
-              </button>
-              <p class="text-center text-muted small mt-2">
-                <i class="fa-solid fa-lock me-1"></i> Your 15% discount will be applied at the workshop.
-              </p>
+            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4 btn-shine">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              <span data-en="Confirm booking on WhatsApp">واٹس ایپ پر بکنگ کنفرم کریں</span>
+            </button>
+            <p class="modal-note">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <span data-en="Your 15% discount is applied at the workshop.">آپ کی 15% رعایت ورکشاپ پر دی جائے
+                گی۔</span>
+            </p>
+            <div class="form-success alert alert-success mt-3 d-none" role="status">
+              <span
+                data-en="Thanks! WhatsApp has opened with your booking – press send and we'll confirm your slot. Didn't open? Call">شکریہ!
+                واٹس ایپ پر آپ کی بکنگ تیار ہے — سینڈ دبائیں، ہم وقت کنفرم کر دیں گے۔ نہیں کھلا؟ کال کریں</span>
+              <a href="tel:+923201291613" class="ltr">0320-1291613</a>
             </div>
           </form>
         </div>
@@ -550,80 +956,43 @@
     </div>
   </div>
 
+  <!-- ===== Language toast (first visit) ===== -->
+  <div class="lang-toast" role="dialog" aria-live="polite" aria-labelledby="langToastTitle" hidden>
+    <span class="lang-toast-icon"><i class="fa-solid fa-language" aria-hidden="true"></i></span>
+    <div class="lang-toast-body">
+      <strong id="langToastTitle" lang="ur">یہ ویب سائٹ اردو میں ہے</strong>
+      <span lang="en" dir="ltr">Prefer to read it in English?</span>
+    </div>
+    <div class="lang-toast-actions">
+      <button type="button" class="btn btn-primary btn-sm js-toast-en" lang="en">English</button>
+      <button type="button" class="btn btn-ghost btn-sm js-toast-ur" lang="ur">اردو ٹھیک ہے</button>
+    </div>
+    <button type="button" class="icon-btn lang-toast-close js-toast-ur" aria-label="Close">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+  </div>
 
-
-  <a href="https://wa.me/923201291613?text=I'm%20interested%20in%20booking%20an%20appointment" class="whatsapp-float"
-    target="_blank" rel="noopener noreferrer">
-    <i class="fa-brands fa-whatsapp my-float"></i>
+  <!-- ===== Floating WhatsApp (desktop) + sticky action bar (phones) ===== -->
+  <a href="https://wa.me/923201291613" class="whatsapp-float js-wa-link" target="_blank" rel="noopener noreferrer"
+    aria-label="WhatsApp" data-track="whatsapp_click">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
   </a>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <nav class="mobile-cta-bar" aria-label="Quick contact">
+    <a href="tel:+923201291613" data-track="call_click"><i class="fa-solid fa-phone" aria-hidden="true"></i><span
+        data-en="Call">کال</span></a>
+    <a href="https://wa.me/923201291613" class="is-wa js-wa-link" target="_blank" rel="noopener"
+      data-track="whatsapp_click"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span
+        data-en="WhatsApp">واٹس ایپ</span></a>
+    <a href="#" class="is-book" data-bs-toggle="modal" data-bs-target="#appointmentModal"><i
+        class="fa-solid fa-calendar-check" aria-hidden="true"></i><span data-en="Book – 15% off">بکنگ –
+        15%</span></a>
+  </nav>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-  <script>
-
-    function header() {
-      let stickyElement = ".bottom-header";
-      let stickyClass = "fixed";
-
-      let stickyOffset = $(stickyElement).offset().top;
-      $(document).scroll(function () {
-        var sticky = $(stickyElement),
-          scroll = $(window).scrollTop();
-        if (scroll >= stickyOffset) sticky.addClass(stickyClass);
-        else sticky.removeClass(stickyClass);
-      });
-
-
-      let burgerButton = $('.burgerButton')
-      let mobileMenu = $('.rfMobileMenu')
-      let closeButton = $('.rfMobileMenuClose')
-      burgerButton.click(function () {
-        mobileMenu.toggleClass('active')
-      })
-
-      closeButton.click(function () {
-        mobileMenu.removeClass('active')
-      })
-      const mobileMenuToggleButtons = $(".rfMobileMenuButton");
-      const mobileSubMenus = $(".rfInnerMobileMenuList");
-      mobileSubMenus.hide();
-      mobileMenuToggleButtons.click(function () {
-        $(this).toggleClass("active");
-        $(this).next().toggleClass("active").toggle();
-        mobileMenu.removeClass('active')
-      })
-    }
-
-    $(document).ready(function () {
-      // Wait 1.5 seconds after page load, then open the modal
-      setTimeout(function () {
-        var myModal = new bootstrap.Modal(document.getElementById('appointmentModal'));
-        myModal.show();
-      }, 1500);
-
-      $('.services-slider').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        responsive: [
-          { breakpoint: 992, settings: { slidesToShow: 2 } },
-          { breakpoint: 576, settings: { slidesToShow: 1 } }
-        ]
-      });
-
-
-      header();
-
-    });
-  </script>
-
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
